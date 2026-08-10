@@ -20,13 +20,26 @@ export const metadata: Metadata = {
 
 export const dynamic = "force-dynamic"; // Always fetch fresh posts from MySQL
 
+interface RawDbPost {
+  id: number;
+  title: string;
+  slug: string;
+  excerpt: string;
+  content: string;
+  image: string;
+  author: string;
+  comments: number;
+  createdAt: Date | string;
+  updatedAt: Date | string;
+}
+
 async function getPosts(): Promise<BlogPost[]> {
   try {
-    const posts = await prisma.post.findMany({
+    const posts = (await prisma.post.findMany({
       orderBy: { createdAt: "desc" },
-    });
+    })) as RawDbPost[];
 
-    return posts.map((post) => {
+    return posts.map((post: RawDbPost) => {
       let dateIso = new Date().toISOString();
       if (post.createdAt) {
         try {
