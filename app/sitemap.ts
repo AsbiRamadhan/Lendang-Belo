@@ -1,6 +1,11 @@
 import { MetadataRoute } from "next";
 import { prisma } from "@/lib/prisma";
 
+interface SitemapPost {
+  slug: string;
+  updatedAt: Date | string;
+}
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.web.id";
 
@@ -56,14 +61,14 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   ];
 
   try {
-    const posts = await prisma.post.findMany({
+    const posts = (await prisma.post.findMany({
       select: {
         slug: true,
         updatedAt: true,
       },
-    });
+    })) as SitemapPost[];
 
-    const postRoutes: MetadataRoute.Sitemap = posts.map((post) => ({
+    const postRoutes: MetadataRoute.Sitemap = posts.map((post: SitemapPost) => ({
       url: `${baseUrl}/blog/${post.slug}`,
       lastModified: post.updatedAt ? new Date(post.updatedAt) : new Date(),
       changeFrequency: "weekly",
