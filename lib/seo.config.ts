@@ -13,6 +13,9 @@ export const siteMetadata: Metadata = {
   alternates: {
     canonical: baseUrl,
   },
+  verification: {
+    google: "bX4p-GktwfzN_9csiAC9wPX-R3n7VoSgvso3GOXkqT8",
+  },
   title: {
     default: "Desa Wisata Lendang Belo | Terasering Sawah Montong Gading Lombok Timur NTB",
     template: "%s | Desa Wisata Lendang Belo Lombok Timur NTB",
