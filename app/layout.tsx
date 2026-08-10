@@ -14,10 +14,13 @@ const arizonia = Arizonia({
   variable: "--font-arizonia",
 });
 
-const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000";
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(baseUrl),
+  alternates: {
+    canonical: baseUrl,
+  },
   title: {
     default: "Desa Wisata Lendang Belo | Terasering Sawah Montong Gading Lombok Timur NTB",
     template: "%s | Desa Wisata Lendang Belo Lombok Timur NTB",
@@ -105,6 +108,15 @@ export const viewport: Viewport = {
 const jsonLdData = {
   "@context": "https://schema.org",
   "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": `${baseUrl}/#website`,
+      url: baseUrl,
+      name: "Desa Wisata Lendang Belo",
+      description:
+        "Portal Resmi Desa Wisata Lendang Belo, Kecamatan Montong Gading, Kabupaten Lombok Timur, Nusa Tenggara Barat (NTB).",
+      inLanguage: "id-ID",
+    },
     {
       "@type": "TouristDestination",
       "@id": `${baseUrl}/#destination`,

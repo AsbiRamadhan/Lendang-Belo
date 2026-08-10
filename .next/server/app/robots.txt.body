@@ -2,5 +2,6 @@ User-Agent: *
 Allow: /
 Disallow: /admin/
 Disallow: /api/
+Disallow: /blog/create/
 
-Sitemap: https://lendangbelo.web.id/sitemap.xml
+Sitemap: https://lendangbelo.com/sitemap.xml

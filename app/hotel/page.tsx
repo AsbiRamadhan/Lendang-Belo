@@ -4,10 +4,15 @@ import Hero from "@/components/Hero";
 import HotelSection from "@/components/HotelSection";
 import Footer from "@/components/Footer";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+
 export const metadata: Metadata = {
   title: "Homestay & Penginapan Murah Desa Lendang Belo Lombok Timur NTB",
   description:
     "Rekomendasi homestay warga dan tempat bersantai cafe desa di Desa Lendang Belo, Montong Gading, Lombok Timur, NTB. Pesan langsung via WhatsApp.",
+  alternates: {
+    canonical: `${baseUrl}/hotel`,
+  },
   keywords: [
     "Homestay Lendang Belo",
     "Penginapan Murah Lombok Timur",

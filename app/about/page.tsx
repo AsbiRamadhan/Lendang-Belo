@@ -4,10 +4,15 @@ import Hero from "@/components/Hero";
 import AboutSection from "@/components/AboutSection";
 import Footer from "@/components/Footer";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+
 export const metadata: Metadata = {
   title: "Profil & Sejarah Desa Lendang Belo | Montong Gading Lombok Timur NTB",
   description:
     "Mengenal lebih dekat keindahan alam, sejarah singkat, dan kebudayaan Desa Wisata Lendang Belo, Kecamatan Montong Gading, Kabupaten Lombok Timur, NTB.",
+  alternates: {
+    canonical: `${baseUrl}/about`,
+  },
   keywords: [
     "Profil Lendang Belo",
     "Sejarah Desa Lendang Belo",

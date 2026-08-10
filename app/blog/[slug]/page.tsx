@@ -36,11 +36,18 @@ export async function generateMetadata({
     };
   }
 
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.web.id";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+  const postUrl = `${baseUrl}/blog/${post.slug}`;
+  const imageUrl =
+    post.image ||
+    "https://res.cloudinary.com/tar8ttin/image/upload/v1786118779/lendang-belo-blog/image_1.jpg";
 
   return {
     title: `${post.title} | Berita Desa Lendang Belo Lombok Timur`,
     description: post.excerpt,
+    alternates: {
+      canonical: postUrl,
+    },
     keywords: [
       post.title,
       "Lendang Belo",
@@ -52,13 +59,14 @@ export async function generateMetadata({
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      url: `${baseUrl}/blog/${post.slug}`,
+      url: postUrl,
       siteName: "Desa Wisata Lendang Belo",
+      publishedTime: post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
+      modifiedTime: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+      authors: [post.author || "Admin Desa Lendang Belo"],
       images: [
         {
-          url:
-            post.image ||
-            "https://res.cloudinary.com/tar8ttin/image/upload/v1786118779/lendang-belo-blog/image_1.jpg",
+          url: imageUrl,
           width: 1200,
           height: 630,
           alt: post.title,
@@ -70,10 +78,7 @@ export async function generateMetadata({
       card: "summary_large_image",
       title: post.title,
       description: post.excerpt,
-      images: [
-        post.image ||
-          "https://res.cloudinary.com/tar8ttin/image/upload/v1786118779/lendang-belo-blog/image_1.jpg",
-      ],
+      images: [imageUrl],
     },
   };
 }
@@ -90,6 +95,12 @@ export default async function SingleBlogPage({
     notFound();
   }
 
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+  const postUrl = `${baseUrl}/blog/${post.slug}`;
+  const imageUrl =
+    post.image ||
+    "https://res.cloudinary.com/tar8ttin/image/upload/v1786118779/lendang-belo-blog/image_1.jpg";
+
   const formatDate = (d: Date) => {
     return new Date(d).toLocaleDateString("id-ID", {
       day: "numeric",
@@ -98,8 +109,64 @@ export default async function SingleBlogPage({
     });
   };
 
+  const articleJsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        "@id": `${postUrl}#article`,
+        headline: post.title,
+        description: post.excerpt,
+        image: imageUrl,
+        datePublished: post.createdAt ? new Date(post.createdAt).toISOString() : undefined,
+        dateModified: post.updatedAt ? new Date(post.updatedAt).toISOString() : undefined,
+        author: {
+          "@type": "Person",
+          name: post.author || "Admin Desa Lendang Belo",
+        },
+        publisher: {
+          "@type": "Organization",
+          name: "Pemerintah Desa Lendang Belo",
+          url: baseUrl,
+        },
+        "mainEntityOfPage": {
+          "@type": "WebPage",
+          "@id": postUrl,
+        },
+      },
+      {
+        "@type": "BreadcrumbList",
+        "@id": `${postUrl}#breadcrumb`,
+        itemListElement: [
+          {
+            "@type": "ListItem",
+            position: 1,
+            name: "Beranda",
+            item: baseUrl,
+          },
+          {
+            "@type": "ListItem",
+            position: 2,
+            name: "Berita Desa",
+            item: `${baseUrl}/blog`,
+          },
+          {
+            "@type": "ListItem",
+            position: 3,
+            name: post.title,
+            item: postUrl,
+          },
+        ],
+      },
+    ],
+  };
+
   return (
     <main className="min-h-screen bg-white text-slate-900">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
+      />
       {/* Navbar Navigasi */}
       <Navbar />
 

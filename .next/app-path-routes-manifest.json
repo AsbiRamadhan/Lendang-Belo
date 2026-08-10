@@ -12,16 +12,16 @@
   "/icon.png/route": "/icon.png",
   "/robots.txt/route": "/robots.txt",
   "/sitemap.xml/route": "/sitemap.xml",
-  "/admin/login/page": "/admin/login",
-  "/admin/page": "/admin",
-  "/blog/create/page": "/blog/create",
   "/page": "/",
   "/about/page": "/about",
-  "/blog/page": "/blog",
   "/destination/page": "/destination",
   "/contact/page": "/contact",
-  "/blog/[slug]/page": "/blog/[slug]",
   "/events/page": "/events",
+  "/blog/page": "/blog",
+  "/blog/[slug]/page": "/blog/[slug]",
   "/hotel/page": "/hotel",
-  "/map/page": "/map"
+  "/map/page": "/map",
+  "/admin/login/page": "/admin/login",
+  "/admin/page": "/admin",
+  "/blog/create/page": "/blog/create"
 }

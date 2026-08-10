@@ -7,7 +7,7 @@ interface SitemapPost {
 }
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.web.id";
+  const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
 
   const staticRoutes: MetadataRoute.Sitemap = [
     {

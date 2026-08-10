@@ -4,10 +4,15 @@ import Hero from "@/components/Hero";
 import DestinationSection from "@/components/DestinationSection";
 import Footer from "@/components/Footer";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+
 export const metadata: Metadata = {
   title: "Event & Festival Budaya Lendang Belo Montong Gading Lombok Timur",
   description:
     "Saksikan agenda event budaya tahunan Festival Dara Ngindang, tradisi Siong Kopi Kete, serta wisata kebudayaan Desa Lendang Belo, Lombok Timur, NTB.",
+  alternates: {
+    canonical: `${baseUrl}/events`,
+  },
   keywords: [
     "Festival Dara Ngindang",
     "Event Budaya Lombok Timur",

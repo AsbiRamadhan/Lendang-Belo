@@ -5,10 +5,15 @@ import Footer from "@/components/Footer";
 import { prisma } from "@/lib/prisma";
 import { Newspaper } from "lucide-react";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+
 export const metadata: Metadata = {
   title: "Berita & Kegiatan Desa Lendang Belo Montong Gading Lombok Timur",
   description:
     "Pusat informasi berita terkini, pembangunan desa, kegiatan mahasiswa KKN, dan event kebudayaan Desa Wisata Lendang Belo, Montong Gading, Lombok Timur, NTB.",
+  alternates: {
+    canonical: `${baseUrl}/blog`,
+  },
   keywords: [
     "Berita Lendang Belo",
     "Kegiatan Desa Lendang Belo",

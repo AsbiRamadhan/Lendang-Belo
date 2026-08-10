@@ -4,10 +4,15 @@ import Hero from "@/components/Hero";
 import MapSection from "@/components/MapSection";
 import Footer from "@/components/Footer";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+
 export const metadata: Metadata = {
   title: "Peta Lokasi & Potensi Wisata Desa Lendang Belo Montong Gading Lombok Timur",
   description:
     "Peta navigasi Google Maps dan peta potensi wisata terasering sawah karya pemuda Desa Lendang Belo, Kecamatan Montong Gading, Lombok Timur, NTB.",
+  alternates: {
+    canonical: `${baseUrl}/map`,
+  },
   keywords: [
     "Peta Lendang Belo",
     "Lokasi Lendang Belo Montong Gading",

@@ -4,10 +4,15 @@ import Hero from "@/components/Hero";
 import DestinationSection from "@/components/DestinationSection";
 import Footer from "@/components/Footer";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+
 export const metadata: Metadata = {
   title: "Wisata Terasering Sawah & Budaya Lendang Belo Lombok Timur NTB",
   description:
     "Jelajahi keasrian Objek Wisata Terasering Sawah Lendang Belo, kemeriahan Festival Dara Ngindang, dan tradisi Siong Kopi Kete di Kecamatan Montong Gading, Lombok Timur, NTB.",
+  alternates: {
+    canonical: `${baseUrl}/destination`,
+  },
   keywords: [
     "Terasering Sawah Lendang Belo",
     "Terasering Sawah Lombok Timur",

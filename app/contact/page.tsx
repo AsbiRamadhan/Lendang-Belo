@@ -4,10 +4,15 @@ import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
 import { MapPin, Phone, Mail, Clock } from "lucide-react";
 
+const baseUrl = process.env.NEXT_PUBLIC_APP_URL || "https://lendangbelo.com";
+
 export const metadata: Metadata = {
   title: "Kontak Resmi Perangkat Desa Lendang Belo Lombok Timur NTB",
   description:
     "Hubungi Pemerintah Kantor Desa Lendang Belo, Montong Gading, Lombok Timur, NTB. Layanan informasi wisata, kemitraan, dan kontak langsung WhatsApp +62 818-0713-5209.",
+  alternates: {
+    canonical: `${baseUrl}/contact`,
+  },
   keywords: [
     "Kontak Desa Lendang Belo",
     "Kantor Desa Lendang Belo",
